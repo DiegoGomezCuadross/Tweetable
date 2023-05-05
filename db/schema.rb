@@ -53,12 +53,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_190447) do
 
   create_table "tweets", force: :cascade do |t|
     t.text "body"
-    t.integer "replies_count"
-    t.integer "likes_count"
+    t.integer "replies_count", default: 0
+    t.integer "likes_count", default: 0
     t.bigint "user_id", null: false
     t.bigint "replied_to_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["body"], name: "index_tweets_on_body", unique: true
     t.index ["replied_to_id"], name: "index_tweets_on_replied_to_id"
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
