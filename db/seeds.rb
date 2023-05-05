@@ -2,76 +2,77 @@ require 'faker'
 
 puts "Reset data"
 
-ActiveRecord::Base.connection.reset_pk_sequence!('tweets')
-ActiveRecord::Base.connection.reset_pk_sequence!('likes')
-ActiveRecord::Base.connection.reset_pk_sequence!('users')
-
-Tweet.destroy_all
 Like.destroy_all
+Tweet.destroy_all
 User.destroy_all
 
-puts "Start seeding"
+ActiveRecord::Base.connection.reset_pk_sequence!('likes')
+ActiveRecord::Base.connection.reset_pk_sequence!('tweets')
+ActiveRecord::Base.connection.reset_pk_sequence!('users')
 
-# Crear usuarios
-admin = User.create!(
-  email: "admin@mail.com",
-  username: "admin",
-  name: "Admin User",
-  password: "supersecret",
-  role: 1
-)
 
-users = []
-4.times do |i|
-  user = User.create!(
-    name: "Member User #{i+1}",
-    username: "member#{i+1}",
-    email: "member#{i+1}@example.com",
-    password: "password",
-    role: 0
-  )
+puts "Seeding custom admin -> admin@gmail.com - supersecret"
 
-  users << user
-end
+User.create(email: "admin@mail.com",
+            username: "Boss", 
+            name: "admin", 
+            password: "supersecret",
+            role: 1
+            )
 
-# Crear tweets
-users.each do |user|
-  5.times do |j|
-    tweet = user.tweets.create!(
-      body: "This is tweet #{j+1} from #{user.username}",
-      replies_count: 0,
-      likes_count: 0
-    )
+puts "Seeding custom user -> user@mail.com - qwerty "
+User.create(email: "user@gmail.com",
+            username: "elUser", 
+            name: "user", 
+            role: 0,
+            password:"qwerty")
 
-    # Reply to other tweets
-    if j > 0
-      replied_to_tweet = user.tweets.offset(rand(j)).first
-      tweet.update!(replied_to: replied_to_tweet)
-      replied_to_tweet.increment!(:replies_count)
+4.times do
+    user = User.new(email: Faker::Internet.email, 
+        username: Faker::Internet.username, 
+        name: Faker::Name.name,
+        role: 0, 
+        password:"querty"
+         )
+    if user.valid?
+        user.save
+    else
+        p user.errors.full_messages
     end
-  end
 end
 
-# Crear likes
-users.each do |user|
-  tweets = user.tweets
-  other_users = users - [user]
-  tweets.each do |tweet|
-    rand(1..3).times do
-      other_user = other_users.sample
-      like = tweet.likes.create!(user: other_user)
-      like.user = admin if rand(0..10) == 0 # Admin likes some tweets randomly
-      like.save
+5.times do
+    tweet = Tweet.new(user: User.all.sample,
+                      body: Faker::Hipster.paragraph_by_chars(characters: 139)
+                     )
+    if tweet.valid?
+        tweet.save
+    else
+        p tweet.errors.full_messages
     end
-  end
 end
 
-# Follow other users
-users.each do |user|
-  other_users = users - [user]
-  other_users.sample(rand(1..3)).each do |other_user|
-    unless user.following?(other_user)
-      user.follow!(other_user)
+created_tweets = Tweet.all
+10.times do
+    retweet = Tweet.new(user: User.all.sample, 
+                        body: Faker::Hipster.paragraph_by_chars(characters: 139), 
+                        replied_to: created_tweets.sample )
+    if retweet.valid?
+        retweet.save
+    else
+        p retweet.errors.full_messages
     end
-  end
 end
+
+10.times do
+    like = Like.new(user: User.all.sample,
+                    tweet: Tweet.all.sample
+                   )
+    if like.valid?
+        like.save
+    else
+        p like.errors.full_messages
+    end
+end
+
+puts "Completed"
