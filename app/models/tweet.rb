@@ -3,10 +3,9 @@ class Tweet < ApplicationRecord
 
   # Associations
   belongs_to :user
-  belongs_to :replied_to, class_name: "Tweet", optional: true
+  belongs_to :replied_to, class_name: "Tweet", optional: true, counter_cache: :replies_count
   
   has_many :likes, dependent: :destroy
   has_many :users, through: :likes, counter_cache: true
-
 
 end
