@@ -1,44 +1,41 @@
 <div class= "container-md">
-  <h2 class="heading-tweet-sm">Create an account</h2>
+  <h2 class="heading-tweet-sm article-summary">Create an account</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="field input">
-      <%= f.label :username %>
-      <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+    <div class="field input overline">
+     <p class="base-tweet-sm"><%= f.label :username %></p> 
+      <%= f.text_field :username, autofocus: true, autocomplete: "username", style: "margin-bottom: 16px;" %>
     </div>
 
-    <div class="field input">
-      <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="field input overline">
+      <p class="base-tweet-sm"><%= f.label :email %></p>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", style: "margin-bottom: 16px;" %>
     </div>
 
-    <div class="field input">
-      <%= f.label :name %>
-      <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+    <div class="field input overline">
+      <p class="base-tweet-sm"><%= f.label :name %></p>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", style: "margin-bottom: 16px;" %>
     </div>
 
-    <div class="field input">
-      <%= f.label :avatar%>
-      <%= f.file_field :avatar, accept: 'image/png, image/jpeg' %>
+    <div class="field input overline">
+      <p class="base-tweet-sm"><%= f.label :avatar%></p>
+      <%= f.file_field :avatar, accept: 'image/png, image/jpeg', style: "margin-bottom: 16px;" %>
     </div>
 
-    <div class="field input">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %>
-      <%= f.password_field :password, autocomplete: "new-password" %>
+    <div class="field input overline">
+      <p class="base-tweet-sm"><%= f.label :password %></p>
+      <%= f.password_field :password, autocomplete: "new-password", style: "margin-bottom: 16px;" %>
     </div>
 
-    <div class="field input">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <div class="field input overline">
+      <p class="base-tweet-sm"><%= f.label :password_confirmation %></p>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", style: "margin-bottom: 16px;" %>
     </div>
 
-    <div class="actions">
-      <%= f.submit "Sign up" %>
+    <div class="button button--primary button--sm text-decoration-none ml-4 button-footer">
+      <%= f.submit "SIGN UP" %>
     </div>
   <% end %>
 

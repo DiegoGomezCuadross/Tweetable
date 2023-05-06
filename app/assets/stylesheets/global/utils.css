@@ -174,3 +174,7 @@
 .border {
   border-bottom: 16px;
 }
+
+.border-top {
+  margin-top: 16px;
+}
