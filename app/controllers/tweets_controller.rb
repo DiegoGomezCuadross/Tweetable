@@ -23,7 +23,11 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
 
-    @tweet.save
+   if @tweet.save
+   redirect_to tweets_path
+   else
+   render :new, status: :unprocessable_entity
+   end
   end
 
   # PATCH/PUT /tweets/1
