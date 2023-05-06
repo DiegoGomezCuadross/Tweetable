@@ -2,6 +2,9 @@
 
 <h1>Tweets</h1>
 
+<%= render "form", tweet: @tweet %>
+
+
 <div id="tweets">
   <% @tweets.each do |tweet| %>
     <%= render tweet %>

@@ -4,8 +4,8 @@ class TweetsController < ApplicationController
   # GET /tweets
   def index
     @tweets = Tweet.all
+    @tweet = Tweet.new
   end
-
   # GET /tweets/1
   def show
   end
@@ -23,11 +23,7 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
 
-    if @tweet.save
-      redirect_to @tweet, notice: "Tweet was successfully created."
-    else
-      render :new, status: :unprocessable_entity
-    end
+    @tweet.save
   end
 
   # PATCH/PUT /tweets/1
