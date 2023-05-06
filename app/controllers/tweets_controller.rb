@@ -21,13 +21,18 @@ class TweetsController < ApplicationController
 
   # POST /tweets
   def create
-    @tweet = Tweet.new(tweet_params)
+   @tweet = Tweet.new(tweet_params) 
+    @tweet.user_id = current_user.id
 
-   if @tweet.save
-   redirect_to tweets_path
-   else
-   render :new, status: :unprocessable_entity
-   end
+    if @tweet.save
+      if !@tweet.replied_to_id?
+        redirect_to tweets_path
+      else 
+        redirect_to tweet_path(@tweet.replied_to_id)
+      end
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   # PATCH/PUT /tweets/1

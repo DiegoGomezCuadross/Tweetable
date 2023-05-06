@@ -20,16 +20,12 @@
   </p>
 
   <p>
-    <strong>Replied to:</strong>
-    <% @tweet.replies.each do |reply| %>
-    <div>
-      <strong>Comment:</strong>
-      <%= reply.body %>
-      </br>
-      <strong>User:</strong>
-      <%= reply.user.username %>
-    </div>
-    <% end %>
+    <strong>Replied_to:</strong>
+    <%= tweet.replied_to_id %>
   </p>
 
+  <p>
+    <strong>User:</strong>
+    <%= tweet.user_id %>
+  </p>
 </div>

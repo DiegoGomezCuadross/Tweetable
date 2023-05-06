@@ -11,6 +11,24 @@
   </head>
 
   <body>
+
+  <%if user_signed_in? %>
+        <ul class="dropdown-menu">
+          <li><span>Thanks for using Tweetable!</span></li>
+          <li><%= link_to "Profile", users_path, class: "link" %>
+          <li><%= link_to 'LOG OUT', destroy_user_session_path, data: {turbo_method: :delete}%></li>
+        </ul>
+      <%else%>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Sign in", new_user_session_path%></li>
+          <li><%= link_to "Sign up", user_session_path%></li>
+        </ul>
+  <%end%>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
+  
   </body>
+  
 </html>

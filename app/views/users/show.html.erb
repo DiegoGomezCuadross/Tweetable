@@ -1,10 +1,77 @@
-<p style="color: green"><%= notice %></p>
+<section class="section">
+  <div class="container">
+    <h1 class="heading">Profile</h1>
+    <div class="flex flex-column gap-4 content-lg">
+      <div>
+        <strong>Avatar</strong>
+      </div>
+    <div>
+    <% if @user.avatar.attached? %>
+    <div>
+      <%= image_tag user.avatar, alt: "Image to #{user.name}", class: "avatar" %>
+      </div>
+    <% else %>
+      <div>
+        <%= image_tag "user_empty.png", alt: "Image not found", class: "avatar" %>
+      </div>
+    <% end %>
+  </div>
+      <div class="">
+        <strong>Name:</strong>
+        <%= @user.name %>
+      </div>
 
-<%= render @user %>
+      <div>
+        <strong>Username:</strong>
+        <%= @user.username %>
+      </div>
 
-<div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
+      <div>
+        <strong>Email:</strong>
+        <%= @user.email %>
+      </div>
 
-  <%= button_to "Destroy this user", @user, method: :delete %>
+      <div>
+        <span>Joined on</span>
+        <% formatted_time = @user.created_at.strftime("%b %e, %Y") %>
+        <%= formatted_time %>
+      </div>
+
+      </div>
+        <h1>Tweets</h1>
+            <div id="tweets">
+            <% @user.tweets.each do |tweet| %>
+                <% if !tweet.replied_to_id? %>
+                <div>
+                <%= render tweet %>
+                </div>
+                <p>
+                <%= link_to "Show this tweet", tweet %>
+                </p>
+                <% end %>
+            <% end %>
+          </div>
+      <div>
+
+      <div>
+        <%= link_to 'Edit profile', edit_user_registration_path %> |
+        <%= link_to 'Back', root_path %>
+      </div>
+
+      <div id="tweets">
+        <% @tweets.each do |tweet| %>
+        <% if !tweet.replied_to_id? %>
+        <div class="tweet">
+        <%= render tweet %>
+        </div>
+        <p>
+        <%= link_to "Show this tweet", tweet %>
+    </p>
+
+    <% end %>
+  <% end %>
 </div>
+    </div>
+  </div>
+</section>
+
