@@ -11,12 +11,10 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.text_area :body %>
+  <div class="border-top">
+    <%= form.text_area :body, placeholder: "Remember to thing before write..."%>
   </div>
-
   <div>
-    <%= form.submit %>
+    <%= form.submit "Tweet"%>
   </div>
 <% end %>

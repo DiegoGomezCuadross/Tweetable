@@ -1,18 +1,21 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Tweets</h1>
-
-<%= render "form", tweet: @tweet %>
-
-<div id="tweets">
-  <% @tweets.each do |tweet| %>
-    <% if !tweet.replied_to_id? %>
-    <div>
-    <%= render tweet %>
-    </div>
-    <p>
-    <%= link_to "Show this tweet", tweet %>
-    </p>
-    <% end %>
-  <% end %>
-</div>
+<main class="section-padding-md article-summary">
+  <div class="container-lg">
+    <h1>Home</h1>
+    <%= render "form", tweet: @tweet %>
+      <div id="tweets">
+        <div class="article-summary__card bg-color-background-white">
+          <% @tweets.each do |tweet| %>
+            <% if !tweet.replied_to_id? %>
+            <div>
+            <%= render tweet %>
+            </div>
+            <p>
+            <%= link_to "Show this tweet", tweet %>
+            </p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+  </div>
+</main>

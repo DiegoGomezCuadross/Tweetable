@@ -1,7 +1,32 @@
 <div id="<%= dom_id tweet %>">
+
+  <div>
+      <div>
+        <strong>Avatar</strong>
+      </div>
+    <div>
+    <% if tweet.user.avatar.attached? %>
+    <div class="profile-pic">
+      <%= image_tag tweet.user.avatar, alt: "Image to #{tweet.user.name}", class: "avatar" %>
+      </div>
+    <% else %>
+      <div class="profile-pic">
+        <%= image_tag "tanus.svg", alt: "Image not found", class: "avatar" %>
+      </div>
+    <% end %>
+  </div>
+
+  <p>
+    <strong>User:</strong>
+    <%= "@" + tweet.user.username %>
+  </p>
+
   <p>
     <strong>Body:</strong>
     <%= tweet.body %>
+    <div>
+     <%= time_ago(tweet.created_at) %>
+    </div>
   </p>
 
   <p>
@@ -12,11 +37,6 @@
   <p>
     <strong>Likes count:</strong>
     <%= tweet.likes_count %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= tweet.user.name %>
   </p>
 
   <p>

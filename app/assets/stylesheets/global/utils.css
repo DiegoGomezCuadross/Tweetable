@@ -178,3 +178,20 @@
 .border-top {
   margin-top: 16px;
 }
+
+img {
+  width: 100px;
+}
+
+.profile-pic {
+  display: inline-block;
+  width: 50px; /* ajusta el tamaño a tu gusto */
+  height: 50px;
+  border-radius: 50%; /* aplica la máscara circular */
+  overflow: hidden; /* oculta las partes de la imagen fuera de la máscara */
+}
+
+.profile-pic svg {
+  width: 100%; /* ajusta el tamaño de la imagen para cubrir la máscara */
+  height: auto;
+}
