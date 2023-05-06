@@ -8,7 +8,7 @@
     <div>
     <% if @user.avatar.attached? %>
     <div>
-      <%= image_tag user.avatar, alt: "Image to #{user.name}", class: "avatar" %>
+      <%= image_tag @user.avatar, alt: "Image to #{@user.name}", class: "avatar" %>
       </div>
     <% else %>
       <div>

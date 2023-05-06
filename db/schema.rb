@@ -60,7 +60,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_06_052052) do
     t.bigint "replied_to_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["body"], name: "index_tweets_on_body", unique: true
     t.index ["replied_to_id"], name: "index_tweets_on_replied_to_id"
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
