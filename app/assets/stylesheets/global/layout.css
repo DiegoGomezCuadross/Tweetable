@@ -70,3 +70,25 @@
 .section-padding-xl {
   padding: 144px 0;
 }
+
+.signinForm {
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px;
+  gap: 16px;
+
+  min-width: 328px;
+  min-height: 428px;
+
+  /* white */
+
+  background: #ffffff;
+  /* gray-100 */
+
+  border: 1px solid #f2f2f2;
+  /* shadow/base */
+
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0px 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+}

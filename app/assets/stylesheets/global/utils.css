@@ -170,3 +170,7 @@
 .margin-left-3x {
   margin-left: 3rem;
 } */
+
+.border {
+  border-bottom: 16px;
+}

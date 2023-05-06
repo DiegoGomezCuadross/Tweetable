@@ -1,26 +1,22 @@
-<div class= "container-md article">
-      <h2>Sign in to your account</h2>
+<div class= "container-md">
+      <h2 class="article-summary heading-tweet-sm">Sign in to your account</h2>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="field input">
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example@mail.com" %>
-      </div>
 
-      <div class="field input">
-       <div class= "name-form> <%= f.label :password %> </div>
-        <%= f.password_field :password, autocomplete: "current-password", placeholder: "********" %>
-      </div>
+    <div class="signinForm">
+        <div class="field input overline">
+        <p class= "base-tweet-sm"><%= f.label :email %> </p>  
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example@mail.com", style: "margin-bottom: 16px;" %>
+        </div>
 
-      <% if devise_mapping.rememberable? %>
-        <section class="field">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
-        </section>
+        <div class="field input overline">
+        <p class= "base-tweet-sm"> <%= f.label :password %> </p>
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "********", style: "margin-bottom: 16px;"%>
+        </div>
+
+        <div class="button button--primary button--sm text-decoration-none ml-4 button-footer">
+          <%= f.submit "SIG IN"%>
+        </div>
       <% end %>
-
-      <div class="button button--primary button--sm text-decoration-none">
-        <%= f.submit "SIG IN" %>
-      </div>
-    <% end %>
-    <%= render "devise/shared/links" %>
+      <%= render "devise/shared/links" %>
+    </div>
 </div>

@@ -2,9 +2,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap");
 
 :root {
-  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  --font-secondary: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  --font-primary: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --font-secondary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 body {
@@ -84,6 +84,15 @@ h6 {
   line-height: 1.2rem;
 }
 
-h2 {
-  text-align: center;
+.heading-tweet-sm {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+}
+
+.base-tweet-sm {
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
 }

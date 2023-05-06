@@ -1,12 +1,10 @@
-<div class="container-md article article-summary">
+<div class="article-summary">
 <%- if controller_name != 'sessions' %>
   <%= link_to "Log in", new_session_path(resource_name) %><br />
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <br>
-  Don’t have an account?
-  <br>
+  <p>Don’t have an account?</p>
   <%= link_to "Create an acount", new_registration_path(resource_name) %><br />
 <% end %>
 
