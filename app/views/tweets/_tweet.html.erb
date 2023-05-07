@@ -1,51 +1,34 @@
 <div id="<%= dom_id tweet %>">
-
   <div>
-      <div>
-        <strong>Avatar</strong>
+    <div class="user-info">
+      <% if tweet.user.avatar.attached? %>
+      <div class="profile-pic avatar-middle">
+        <%= image_tag tweet.user.avatar, alt: "Image to #{tweet.user.name}", class: "avatar" %>
       </div>
-    <div>
-    <% if tweet.user.avatar.attached? %>
-    <div class="profile-pic">
-      <%= image_tag tweet.user.avatar, alt: "Image to #{tweet.user.name}", class: "avatar" %>
-      </div>
-    <% else %>
-      <div class="profile-pic">
+      <% else %>
+      <div class="profile-pic avatar-middle">
         <%= image_tag "tanus.svg", alt: "Image not found", class: "avatar" %>
       </div>
-    <% end %>
-  </div>
+      <% end %>
 
-  <p>
-    <strong>User:</strong>
-    <%= "@" + tweet.user.username %>
-  </p>
-
-  <p>
-    <strong>Body:</strong>
-    <%= tweet.body %>
-    <div>
-     <%= time_ago(tweet.created_at) %>
+      <div class="user-details">
+        <p><strong> <%=tweet.user.name %></strong> <%= "@" + tweet.user.username %></p> 
+        <p> <%= time_ago(tweet.created_at) %></p>
+      </div>
     </div>
-  </p>
 
-  <p>
-    <strong>Replies count:</strong>
-    <%= tweet.replies_count %>
-  </p>
-
-  <p>
-    <strong>Likes count:</strong>
-    <%= tweet.likes_count %>
-  </p>
-
-  <p>
-    <strong>Replied_to:</strong>
-    <%= tweet.replied_to_id %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= tweet.user_id %>
-  </p>
+  <div class="tweet_body">
+    <p><%= tweet.body %></p>
+    <div class="icons-nav">
+      <div class="tweet-icon">
+        <%= image_tag "icon-coment.svg", alt: "Logo-coment"%>
+      </div>
+      <div class="tweet-stats-count">
+        <span><%= tweet.replies_count %></span>
+      </div>
+        <%= image_tag "icon-like.svg", alt: "Logo-likes"%>
+        <span class="tweet-stats-count"><%= tweet.likes_count %></span>
+      </div>
+    </div>
+  </div>
 </div>

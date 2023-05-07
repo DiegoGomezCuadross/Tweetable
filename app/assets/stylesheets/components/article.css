@@ -1,6 +1,13 @@
 .article-summary {
   text-align: center;
 }
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(328px, 1fr));
+  gap: 16px;
+  justify-items: center;
+  align-items: center;
+}
 .article-summary__form {
   display: grid;
   /* grid-template-columns: repeat(auto-fill, 1fr); */
