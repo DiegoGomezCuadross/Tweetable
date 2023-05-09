@@ -1,8 +1,10 @@
 <p style="color: green"><%= notice %></p>
-<main class="section-padding-md article-summary">
+<main>
   <div class="container-lg">
-    <h1>Home</h1>
-    <%= render "form", tweet: @tweet %>
+    <h1 class= "article-summary">Home</h1>
+    <div class="card-new-tweet ">
+     <%= render "form", tweet: @tweet %>
+    </div>
     <div class="grid-container">
       <div id="tweets">
         <% @tweets.each do |tweet| %>

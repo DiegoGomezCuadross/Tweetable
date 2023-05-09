@@ -21,12 +21,14 @@ class LikesController < ApplicationController
 
   # POST /likes
   def create
-    @like = Like.new(like_params)
-
+    @tweet = Tweet.find(params[:tweet_id])
+    @like = @tweet.likes.build(user_id: current_user.id)
     if @like.save
-      redirect_to @like, notice: "Like was successfully created."
-    else
-      render :new, status: :unprocessable_entity
+      if !@tweet.replied_to_id?
+        redirect_to tweets_path(@tweet)
+      else 
+        redirect_to tweet_path(@tweet.replied_to_id)
+      end
     end
   end
 
@@ -41,8 +43,8 @@ class LikesController < ApplicationController
 
   # DELETE /likes/1
   def destroy
-    @like.destroy
-    redirect_to likes_url, notice: "Like was successfully destroyed."
+    if @like.destroy
+    end
   end
 
   private

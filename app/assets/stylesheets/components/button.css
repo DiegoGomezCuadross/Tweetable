@@ -15,9 +15,30 @@
   align-items: center;
 }
 
+.button-tweet {
+  padding: 0.75em 1em;
+  cursor: pointer;
+  width: 47px;
+  height: 16px;
+  display: flex;
+  gap: 0.35em;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 8em;
+  right: 2em;
+}
+
 .button--sm {
   font-size: 0.8em;
   padding: 0.5em 0.75em;
+  border: none;
+  border-radius: 0.5em;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
 }
 
 .button--lg {

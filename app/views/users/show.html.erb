@@ -1,76 +1,60 @@
 <section class="section">
   <div class="container">
-    <h1 class="heading">Profile</h1>
-    <div class="flex flex-column gap-4 content-lg">
-      <div>
-        <strong>Avatar</strong>
-      </div>
-    <div>
-    <% if @user.avatar.attached? %>
-    <div>
-      <%= image_tag @user.avatar, alt: "Image to #{@user.name}", class: "avatar" %>
-      </div>
-    <% else %>
-      <div>
-        <%= image_tag "user_empty.png", alt: "Image not found", class: "avatar" %>
-      </div>
-    <% end %>
-  </div>
-      <div class="">
-        <strong>Name:</strong>
-        <%= @user.name %>
+    <div class= "article-summary">
+     <h1 class="heading">Profile</h1>
+
+        <% if @user.avatar.attached? %>
+            <%= image_tag @user.avatar, alt: "Image to #{@user.name}", class: "avatar-profile article-summary"%>
+        <% else %>
+            <%= image_tag "user_empty.png", alt: "Image not found", class: "avatar-profile article-summary" %>
+        <% end %>
+
+      <strong>
+        <%=@user.name %>
+      </strong>
+
+      <div class= "text-tweet">
+        <%="@" + @user.username %>
       </div>
 
-      <div>
-        <strong>Username:</strong>
-        <%= @user.username %>
-      </div>
-
-      <div>
-        <strong>Email:</strong>
-        <%= @user.email %>
-      </div>
-
-      <div>
-        <span>Joined on</span>
-        <% formatted_time = @user.created_at.strftime("%b %e, %Y") %>
+      <div class= "text-tweet margin-bottom" >
+       <span>Joined on</span>
+        <% formatted_time = @user.created_at.strftime("%b %e, %Y")%>
         <%= formatted_time %>
       </div>
 
-      </div>
-        <h1>Tweets</h1>
-            <div id="tweets">
-            <% @user.tweets.each do |tweet| %>
-                <% if !tweet.replied_to_id? %>
-                <div>
-                <%= render tweet %>
-                </div>
-                <p>
-                <%= link_to "Show this tweet", tweet %>
-                </p>
-                <% end %>
-            <% end %>
-          </div>
       <div>
-
-      <div>
-        <%= link_to 'Edit profile', edit_user_registration_path %> |
-        <%= link_to 'Back', root_path %>
+        <%= link_to 'Edit profile', edit_user_registration_path,  class: "button--sm button--primary overline"%>
       </div>
+    </div>
 
-      <div id="tweets">
-        <% @tweets.each do |tweet| %>
-        <% if !tweet.replied_to_id? %>
-        <div class="tweet">
-        <%= render tweet %>
+    </div>
+      <h1>Tweets</h1>
+          <div id="tweets">
+          <% @user.tweets.each do |tweet| %>
+              <% if !tweet.replied_to_id? %>
+              <div>
+              <%= render tweet %>
+              </div>
+              <p>
+              <%= link_to "Show this tweet", tweet %>
+              </p>
+              <% end %>
+          <% end %>
         </div>
-        <p>
-        <%= link_to "Show this tweet", tweet %>
-    </p>
+    <div>
 
-    <% end %>
-  <% end %>
-</div>
+    <div id="tweets">
+      <% @tweets.each do |tweet| %>
+        <% if !tweet.replied_to_id? %>
+          <div class="tweet">
+            <%= render tweet %>
+          </div>
+          <p>
+            <%= link_to "Show this tweet", tweet %>
+          </p>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </section>

@@ -1,4 +1,4 @@
-<div id="<%= dom_id tweet %>">
+<div id="<%= dom_id tweet %>" class="card">
   <div>
     <div class="user-info">
       <% if tweet.user.avatar.attached? %>
@@ -12,23 +12,34 @@
       <% end %>
 
       <div class="user-details">
-        <p><strong> <%=tweet.user.name %></strong> <%= "@" + tweet.user.username %></p> 
-        <p> <%= time_ago(tweet.created_at) %></p>
+        <p><strong><%=tweet.user.name %></strong> <%= "@" + tweet.user.username%></p> 
+        <p class= "time-ago"><%= time_ago(tweet.created_at) %></p>
       </div>
     </div>
-
-  <div class="tweet_body">
-    <p><%= tweet.body %></p>
-    <div class="icons-nav">
-      <div class="tweet-icon">
-        <%= image_tag "icon-coment.svg", alt: "Logo-coment"%>
+    <div class="card-body">
+      <p><%= tweet.body %></p>
+      <div class="icons-nav">
+        <div class="tweet-icon">
+          <%= image_tag "icon-coment.svg", alt: "Logo-coment"%>
+        </div>
+        <div class="tweet-stats-count">
+          <span><%= tweet.replies_count %></span>
+        </div>
+          <%= image_tag "icon-like.svg", alt: "Logo-likes"%>
+          <span class="tweet-stats-count"><%= tweet.likes_count %></span>
       </div>
-      <div class="tweet-stats-count">
-        <span><%= tweet.replies_count %></span>
-      </div>
-        <%= image_tag "icon-like.svg", alt: "Logo-likes"%>
-        <span class="tweet-stats-count"><%= tweet.likes_count %></span>
-      </div>
+      <div>
+    <% if tweet.likes.exists?(user_id: current_user.id) %>
+      <%= button_to tweet_like_path(tweet, tweet.likes.find_by(user_id: current_user.id)), method: :delete, class: "btn btn-danger", remote: true do %>
+        Quitar me gusta
+      <% end %>
+    <% else %>
+      <%= button_to tweet_likes_path(tweet), method: :post, class: "btn btn-primary", remote: true do %>
+        Me gusta
+      <% end %>
+    <% end %>
+  </div>
     </div>
   </div>
 </div>
+

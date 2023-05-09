@@ -11,10 +11,10 @@
     </div>
   <% end %>
 
-  <div class="border-top">
-    <%= form.text_area :body, placeholder: "Remember to thing before write..."%>
-  </div>
   <div>
-    <%= form.submit "Tweet"%>
+    <%= form.text_area :body, placeholder: "Remember to thing before write...", class:"border-top-button text-area-button"%>
+  </div>
+  <div class= "button-tweet">
+    <%= form.submit "TWEET", class: "button--sm button--primary overline"%>
   </div>
 <% end %>
