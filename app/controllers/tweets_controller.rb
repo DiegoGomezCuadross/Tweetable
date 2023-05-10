@@ -8,6 +8,7 @@ class TweetsController < ApplicationController
   end
   # GET /tweets/1
   def show
+    authorize @tweet
   end
 
   # GET /tweets/new

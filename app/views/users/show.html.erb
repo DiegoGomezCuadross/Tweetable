@@ -29,32 +29,34 @@
     </div>
 
     </div>
-      <h1>Tweets</h1>
-          <div id="tweets">
-          <% @user.tweets.each do |tweet| %>
-              <% if !tweet.replied_to_id? %>
-              <div>
-              <%= render tweet %>
-              </div>
-              <p>
-              <%= link_to "Show this tweet", tweet %>
-              </p>
-              <% end %>
-          <% end %>
-        </div>
-    <div>
 
-    <div id="tweets">
-      <% @tweets.each do |tweet| %>
-        <% if !tweet.replied_to_id? %>
-          <div class="tweet">
-            <%= render tweet %>
-          </div>
-          <p>
-            <%= link_to "Show this tweet", tweet %>
-          </p>
+    <div class="container-lg">
+      <h1>Tweets</h1>
+      <div id="tweets">
+        <% @user.likes.each do |like| %>
+            <% if !like.replied_to_id? %>
+            <div>
+            <%= render like %>
+            </div>
+            <p>
+            <%= link_to "Show this like", like %>
+            </p>
+            <% end %>
         <% end %>
-      <% end %>
+      </div>
+
+      <div id="tweets">
+        <% @tweets.each do |tweet| %>
+          <% if !tweet.replied_to_id? %>
+            <div class="tweet">
+              <%= render tweet %>
+            </div>
+            <p>
+              <%= link_to "Show this tweet", tweet %>
+            </p>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </section>

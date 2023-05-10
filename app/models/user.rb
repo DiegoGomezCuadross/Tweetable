@@ -13,12 +13,18 @@ class User < ApplicationRecord
   validates :email, format: { with: VALID_EMAIL_REGEX }, allow_blank: false
 
   validates :password, presence: true, length: { minimum: 6 }
+
+  enum :role, {
+    member: 0,
+    admin: 1
+  }, _default: 0
   
   # Association
   has_one_attached :avatar
 
   has_many :likes, dependent: :destroy
   has_many :tweets, through: :likes, counter_cache: true
+
 
     def self.from_omniauth(auth_hash)
     # Retorna un usuario si lo encuentra
